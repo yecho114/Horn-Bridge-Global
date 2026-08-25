@@ -13,7 +13,7 @@ function useCanScroll(
 ) {
   return useSyncExternalStore(
     (onChange) => {
-      if (!emblaApi) return () => {};
+      if (!emblaApi) return () => { };
       emblaApi.on("select", onChange);
       emblaApi.on("reInit", onChange);
       return () => {
@@ -77,7 +77,7 @@ export function FleetShowcase() {
                 key={item.title}
                 className="min-w-[78%] flex-none sm:min-w-[46%] lg:min-w-[31%]"
               >
-                <div className="group relative flex h-72 flex-col justify-between overflow-hidden rounded-3xl border border-border bg-bg-elevated p-7">
+                <div className="group relative flex w-92 h-58 flex-col justify-between overflow-hidden rounded-3xl border border-border bg-bg-elevated p-7">
                   <div
                     className="absolute -right-8 -top-8 h-40 w-40 rounded-full opacity-0 blur-[60px] transition-opacity duration-500 group-hover:opacity-30"
                     style={{ background: "var(--color-primary-dark)" }}

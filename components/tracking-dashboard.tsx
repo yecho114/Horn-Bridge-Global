@@ -15,7 +15,7 @@ const checklist = [
 
 export function TrackingDashboard() {
   return (
-    <section id="tracking" className="section-pad bg-bg-elevated">
+    <section id="tracking" className="section-pad overflow-x-hidden bg-bg-elevated">
       <div className="container-page grid items-center gap-16 lg:grid-cols-2">
         <Reveal>
           <span className="label-mono text-[11px] text-primary">
@@ -69,7 +69,7 @@ export function TrackingDashboard() {
               </span>
             </div>
 
-            <div className="mt-8 flex items-center gap-8">
+            <div className="mt-8 flex flex-col md:flex-row items-center gap-8">
               <div className="relative flex h-32 w-32 shrink-0 items-center justify-center">
                 <svg viewBox="0 0 120 120" className="h-full w-full -rotate-90">
                   <circle
@@ -103,7 +103,7 @@ export function TrackingDashboard() {
                 </div>
               </div>
 
-              <div className="flex flex-1 flex-col gap-4">
+              <div className="flex w-full flex-1 flex-col gap-4">
                 <div className="flex items-center justify-between border-b border-border pb-3">
                   <span className="text-xs text-subtle">Origin</span>
                   <span className="text-sm font-medium text-fg">
@@ -113,7 +113,7 @@ export function TrackingDashboard() {
                 <div className="flex items-center justify-between border-b border-border pb-3">
                   <span className="text-xs text-subtle">Destination</span>
                   <span className="text-sm font-medium text-fg">
-                    Mombasa, Kenya
+                    Jijiga, Ethiopia
                   </span>
                 </div>
                 <div className="flex items-center justify-between">

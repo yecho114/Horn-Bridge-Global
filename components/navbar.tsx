@@ -33,13 +33,13 @@ export function Navbar() {
     >
       <div className="container-page">
         <div
-          className={`flex items-center justify-between rounded-2xl px-4 py-3 transition-all duration-300 ${scrolled ? "glass shadow-[0_8px_30px_rgba(16,18,26,0.08)]" : "bg-transparent"
+          className={`flex items-center justify-between rounded-2xl px-3 py-2.5 transition-all duration-300 sm:px-4 sm:py-3 ${scrolled ? "glass shadow-[0_8px_30px_rgba(16,18,26,0.08)]" : "bg-transparent"
             }`}
         >
           <Link href="/" className="flex items-end gap-1">
-            <Image src={logo} alt="Logo" width={40} height={32} className="h-8 w-auto" />
+            <Image src={logo} alt="Logo" width={40} height={32} className="h-[clamp(1.6rem,7vw,2rem)] w-auto" />
 
-            <span className="leading-none text-sm font-semibold tracking-tight text-fg sm:text-xs">
+            <span className="leading-none text-[clamp(0.6875rem,3.2vw,0.875rem)] font-semibold tracking-tight text-fg sm:text-xs">
               <span className="">
 
                 <span className="text-red-700">H</span>orn
@@ -75,7 +75,7 @@ export function Navbar() {
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
-            className="flex h-9 w-9 items-center justify-center rounded-full text-fg md:hidden"
+            className="flex h-8 w-8 items-center justify-center rounded-full text-fg sm:h-9 sm:w-9 md:hidden"
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>

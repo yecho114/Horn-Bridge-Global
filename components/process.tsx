@@ -17,7 +17,7 @@ export function Process() {
         <RevealGroup className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {processSteps.map((step, i) => (
             <RevealItem key={step.title} className="relative">
-              <span className="label-mono text-6xl font-bold text-fg/5">
+              <span className="label-mono text-6xl font-bold text-fg/20">
                 {String(i + 1).padStart(2, "0")}
               </span>
               <div className="-mt-8 flex h-11 w-11 items-center justify-center rounded-xl border border-border-strong bg-bg text-primary">

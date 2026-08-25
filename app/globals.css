@@ -141,7 +141,7 @@ body {
   width: 100%;
   max-width: 1320px;
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
 }
 
 @media (min-width: 768px) {

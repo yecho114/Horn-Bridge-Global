@@ -19,7 +19,7 @@ export default function Home() {
       <FleetShowcase />
       <Process />
       <WhyChooseUs />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <CtaBanner />
       <Contact />
     </>

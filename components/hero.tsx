@@ -11,7 +11,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-bg pt-28 pb-16"
+      className="relative flex min-h-svh items-center overflow-hidden bg-bg pt-28 pb-8"
     >
       <video
         autoPlay
@@ -23,10 +23,10 @@ export function Hero() {
         <source src="/video/intro.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-bg/10" />
-      <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_20%,black,transparent)]" />
+      <div className="bg-grid absolute inset-0 mask-[radial-gradient(ellipse_75%_65%_at_50%_20%,black,transparent)]" />
       <div className="radial-glow absolute inset-0" />
       <div
-        className="absolute -right-[10%] top-1/2 h-[560px] w-[560px] -translate-y-1/2 rounded-full opacity-20 blur-[110px]"
+        className="absolute right-[-10%] top-1/2 h-140 w-140 -translate-y-1/2 rounded-full opacity-20 blur-[110px]"
         style={{ background: "radial-gradient(circle, var(--color-primary-dark), transparent 70%)" }}
       />
 
@@ -105,7 +105,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative flex items-center justify-center"
+          className="relative hidden md:flex items-center justify-center"
         >
           <div className="bg-bg/95 w-full max-w-xs rounded-2xl p-5 shadow-[0_20px_60px_rgba(16,18,26,0.12)] sm:p-6">
             <div className="flex items-center justify-between border-b border-border pb-3">

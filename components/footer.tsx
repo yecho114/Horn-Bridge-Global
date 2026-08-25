@@ -83,7 +83,7 @@ export function Footer() {
             <ul className="mt-5 flex flex-col gap-3 text-sm text-muted">
               <li>{siteConfig.email}</li>
               <li>{siteConfig.phone}</li>
-              <li className="max-w-[200px]">{siteConfig.address}</li>
+              <li className="max-w-50">{siteConfig.address}</li>
             </ul>
           </div>
         </div>
