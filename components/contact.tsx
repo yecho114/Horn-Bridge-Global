@@ -4,6 +4,7 @@ import { useState, type SubmitEvent } from "react";
 import { toast } from "sonner";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { companies, companyContact, getCompany, siteConfig } from "@/lib/data";
+import { sendContactEmail } from "@/app/actions/contact";
 import { Reveal } from "./reveal";
 
 export function Contact({
@@ -24,17 +25,25 @@ export function Contact({
   ];
   const [submitting, setSubmitting] = useState(false);
 
-  function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
+  async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
     setSubmitting(true);
-    setTimeout(() => {
+    try {
+      const result = await sendContactEmail(new FormData(form));
+      if (result.ok) {
+        toast.success("Thanks — your inquiry has been sent.", {
+          description: "Our team will reach out shortly.",
+        });
+        form.reset();
+      } else {
+        toast.error(result.error);
+      }
+    } catch {
+      toast.error("Something went wrong sending your message. Please try again.");
+    } finally {
       setSubmitting(false);
-      toast.success("Thanks — your inquiry has been noted.", {
-        description: "Our team will reach out shortly. (Demo form — not yet connected)",
-      });
-      form.reset();
-    }, 700);
+    }
   }
 
   return (
@@ -148,6 +157,16 @@ export function Contact({
                 />
               </div>
             </div>
+
+            {/* Honeypot: hidden from people, bots fill it and get silently dropped. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="hidden"
+            />
 
             <button
               type="submit"
