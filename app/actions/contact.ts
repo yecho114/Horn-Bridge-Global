@@ -2,7 +2,7 @@
 
 import nodemailer from "nodemailer";
 
-export type ContactResult = { ok: true } | { ok: false; error: string };
+export type ContactResult = { ok: true; demo?: boolean } | { ok: false; error: string };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -36,10 +36,15 @@ export async function sendContactEmail(formData: FormData): Promise<ContactResul
     return { ok: false, error: "Please enter a valid email address." };
   }
 
-  const { ZOHO_SMTP_HOST, ZOHO_SMTP_USER, ZOHO_SMTP_PASS, CONTACT_TO } = process.env;
-  if (!ZOHO_SMTP_HOST || !ZOHO_SMTP_USER || !ZOHO_SMTP_PASS) {
-    console.error("Contact form: Zoho SMTP environment variables are missing.");
-    return { ok: false, error: "Email is not configured yet. Please contact us directly." };
+  const { ZOHO_SMTP_HOST, ZOHO_SMTP_USER, ZOHO_SMTP_PASS, CONTACT_TO, CONTACT_DEMO } =
+    process.env;
+
+  // Demo mode: validate and respond as if sent, without emailing anyone.
+  // Active when CONTACT_DEMO=true or when the Zoho settings are not configured.
+  if (CONTACT_DEMO === "true" || !ZOHO_SMTP_HOST || !ZOHO_SMTP_USER || !ZOHO_SMTP_PASS) {
+    console.log("Contact form (demo mode, not sent):", { name, email, phone, company });
+    await new Promise((resolve) => setTimeout(resolve, 700));
+    return { ok: true, demo: true };
   }
 
   const transporter = nodemailer.createTransport({

@@ -33,7 +33,9 @@ export function Contact({
       const result = await sendContactEmail(new FormData(form));
       if (result.ok) {
         toast.success("Thanks — your inquiry has been sent.", {
-          description: "Our team will reach out shortly.",
+          description: result.demo
+            ? "Our team will reach out shortly. (Demo form — not yet connected)"
+            : "Our team will reach out shortly.",
         });
         form.reset();
       } else {
