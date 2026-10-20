@@ -6,6 +6,7 @@ import {
   XIcon,
 } from "./social-icons";
 import Image from "next/image";
+import Link from "next/link";
 import logo from "../img/logo.png";
 
 const socials = [
@@ -21,14 +22,14 @@ export function Footer() {
       <div className="container-page py-16">
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1fr]">
           <div>
-            <a href="#top" className="flex items-center gap-2.5">
+            <Link href="/" className="flex items-center gap-2.5">
               <span className="flex items-center rounded-lg bg-white px-1.5 py-1">
                 <Image src={logo} alt="Logo" width={40} height={26} className="h-6.5 w-auto" />
               </span>
               <span className="text-sm font-semibold tracking-tight text-fg">
-                {siteConfig.name}
+                {siteConfig.legalName}
               </span>
-            </a>
+            </Link>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
               {siteConfig.description}
             </p>
@@ -47,32 +48,32 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="label-mono text-[10px] text-subtle">Company</p>
+            <p className="label-mono text-[10px] text-subtle">Group</p>
             <ul className="mt-5 flex flex-col gap-3">
-              {footerLinks.company.map((link) => (
+              {footerLinks.group.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
           </div>
 
           <div>
-            <p className="label-mono text-[10px] text-subtle">Services</p>
+            <p className="label-mono text-[10px] text-subtle">Our Companies</p>
             <ul className="mt-5 flex flex-col gap-3">
-              {footerLinks.services.map((link) => (
+              {footerLinks.companies.map((link) => (
                 <li key={link.label}>
-                  <a
+                  <Link
                     href={link.href}
                     className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -90,10 +91,10 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
           <p className="text-xs text-subtle">
-            &copy; {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            &copy; {new Date().getFullYear()} {siteConfig.legalName}. All rights reserved.
           </p>
           <p className="text-xs text-subtle">
-            Import &middot; Export &middot; Distribution &middot; Logistics
+            Mobility &middot; Retail &middot; Agriculture &middot; Consultancy
           </p>
         </div>
       </div>

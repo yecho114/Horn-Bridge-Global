@@ -31,6 +31,14 @@
   color-scheme: dark;
 }
 
+/* Company pages: BrandScope sets --brand / --brand-dark, which recolor every
+   primary-colored element inside, including nested .theme-dark sections. */
+.brand-scope,
+.brand-scope .theme-dark {
+  --color-primary: var(--brand);
+  --color-primary-dark: var(--brand-dark);
+}
+
 @theme inline {
   --color-bg: var(--color-bg);
   --color-fg: var(--color-fg);
@@ -117,7 +125,12 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(115deg, var(--color-fg) 15%, var(--color-primary) 65%, #4c7bf0 100%);
+  background: linear-gradient(
+    115deg,
+    var(--color-fg) 15%,
+    var(--color-primary) 65%,
+    color-mix(in srgb, var(--color-primary) 70%, white) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -126,7 +139,7 @@ body {
 .radial-glow {
   background: radial-gradient(
     60% 55% at 50% 0%,
-    rgba(29, 78, 216, 0.14),
+    color-mix(in srgb, var(--color-primary) 14%, transparent),
     transparent 70%
   );
 }

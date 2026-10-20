@@ -3,16 +3,25 @@
 import { useState, type SubmitEvent } from "react";
 import { toast } from "sonner";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
-import { siteConfig } from "@/lib/data";
+import { companies, companyContact, getCompany, siteConfig } from "@/lib/data";
 import { Reveal } from "./reveal";
 
-const contactDetails = [
-  { icon: Mail, label: "Email", value: siteConfig.email },
-  { icon: Phone, label: "Phone", value: siteConfig.phone },
-  { icon: MapPin, label: "Headquarters", value: siteConfig.address },
-];
-
-export function Contact() {
+export function Contact({
+  companySlug,
+  title = "Let's talk business.",
+  description = "Whether you're a customer, supplier or investor, reach out and the right team across our group of companies will get back to you.",
+}: {
+  companySlug?: string;
+  title?: string;
+  description?: string;
+}) {
+  const company = companySlug ? getCompany(companySlug) : undefined;
+  const details = company ? companyContact(company) : siteConfig;
+  const contactDetails = [
+    { icon: Mail, label: "Email", value: details.email },
+    { icon: Phone, label: "Phone", value: details.phone },
+    { icon: MapPin, label: company ? "Address" : "Headquarters", value: details.address },
+  ];
   const [submitting, setSubmitting] = useState(false);
 
   function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
@@ -36,11 +45,10 @@ export function Contact() {
             Get In Touch
           </span>
           <h2 className="mt-4 text-4xl font-bold leading-[1.05] tracking-tight text-fg sm:text-5xl">
-            Let&apos;s talk trade.
+            {title}
           </h2>
           <p className="mt-5 max-w-sm text-[15px] leading-relaxed text-muted">
-            Whether it&apos;s a single vehicle or a full fleet, reach out and
-            our team will guide you through sourcing, shipping and delivery.
+            {description}
           </p>
 
           <div className="mt-9 flex flex-col gap-5">
@@ -107,22 +115,23 @@ export function Contact() {
                 />
               </div>
               <div className="flex flex-col gap-2">
-                <label htmlFor="interest" className="label-mono text-[10px] text-subtle">
-                  I&apos;m Interested In
+                <label htmlFor="company" className="label-mono text-[10px] text-subtle">
+                  Company
                 </label>
                 <select
-                  id="interest"
-                  name="interest"
+                  id="company"
+                  name="company"
                   className="rounded-xl border border-border-strong bg-fg/3 px-4 py-3 text-sm text-fg outline-none transition-colors focus:border-primary"
-                  defaultValue="Vehicle Import/Export"
+                  defaultValue={company?.name ?? siteConfig.legalName}
                 >
-                  <option>Vehicle Import/Export</option>
-                  <option>Distribution &amp; Trading</option>
-                  <option>Electric Vehicles</option>
-                  <option>Spare Parts &amp; Accessories</option>
-                  <option>Public Transport</option>
-                  <option>Logistics &amp; Fleet</option>
-                  <option>Other</option>
+                  <option value={siteConfig.legalName}>
+                    {siteConfig.legalName} (Group)
+                  </option>
+                  {companies.map((c) => (
+                    <option key={c.slug} value={c.name}>
+                      {c.name} — {c.sector}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className="flex flex-col gap-2 sm:col-span-2">
@@ -134,7 +143,7 @@ export function Contact() {
                   name="message"
                   required
                   rows={4}
-                  placeholder="Tell us what you're looking to move..."
+                  placeholder="Tell us how we can help..."
                   className="resize-none rounded-xl border border-border-strong bg-fg/3 px-4 py-3 text-sm text-fg placeholder:text-subtle outline-none transition-colors focus:border-primary"
                 />
               </div>

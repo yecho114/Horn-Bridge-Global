@@ -42,7 +42,7 @@ export function Hero() {
               <span className="animate-pulse-dot absolute inline-flex h-full w-full rounded-full bg-primary" />
             </span>
             <span className="label-mono text-[10px] text-bg/95">
-              Serving the Horn of Africa
+              Horn Bridge Global Motors
             </span>
           </motion.div>
 
@@ -63,8 +63,8 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 max-w-md text-xs leading-relaxed text-bg/95 sm:text-sm"
           >
-            {siteConfig.name} bridges international manufacturers with the
-            Horn of Africa &mdash; importing, exporting, distributing and
+            {siteConfig.name} Motors bridges international manufacturers with
+            the Horn of Africa &mdash; importing, exporting, distributing and
             trading motor vehicles, electric vehicles, spare parts and
             accessories, plus public transport and logistics services across
             Ethiopia, Somalia and Djibouti.

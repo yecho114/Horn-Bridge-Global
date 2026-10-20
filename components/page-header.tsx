@@ -12,9 +12,13 @@ export function PageHeader({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative overflow-hidden bg-bg pt-36 pb-16 sm:pt-40 sm:pb-20">
-      <div className="bg-grid absolute inset-0 [mask-image:radial-gradient(ellipse_75%_65%_at_50%_0%,black,transparent)]" />
+    <section className="theme-dark relative overflow-hidden bg-bg pt-36 pb-16 sm:pt-40 sm:pb-20">
+      <div className="bg-grid absolute inset-0 opacity-[0.07] invert mask-[radial-gradient(ellipse_75%_65%_at_50%_0%,black,transparent)]" />
       <div className="radial-glow absolute inset-0" />
+      <div
+        className="absolute -right-20 -top-20 h-100 w-100 rounded-full opacity-20 blur-[110px]"
+        style={{ background: "var(--color-primary)" }}
+      />
 
       <div className="container-page relative z-10">
         <span className="label-mono text-[11px] text-primary">{eyebrow}</span>
